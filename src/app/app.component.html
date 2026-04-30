@@ -1,0 +1,46 @@
+<main class="app-shell">
+  <header>
+    <h1>Gestión de Usuarios y Clientes</h1>
+  
+    <div class="header-container">
+        <div class="logo-section">
+            <div class="logo">
+                <span class="water-icon">💧</span>
+                <span class="logo-text">Acueducto Veredal</span>
+            </div>
+        </div>
+
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a routerLink="/" routerLinkActive="active" class="nav-link">
+                        <span class="nav-icon">🏠</span>
+                        Inicio
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/cliente" routerLinkActive="active" class="nav-link">
+                        <span class="nav-icon">👥</span>
+                        Clientes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/usuario" routerLinkActive="active" class="nav-link">
+                        <span class="nav-icon">👤</span>
+                        Usuarios
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="header-actions">
+            <div class="user-info">
+                <span class="user-icon">👤</span>
+                <span class="user-name">Usuario</span>
+            </div>
+        </div>
+    </div>
+</header>
+<router-outlet></router-outlet>
+</main>
+

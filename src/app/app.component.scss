@@ -1,0 +1,161 @@
+/* Contenedor general */
+.app-shell {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+    min-height: 100vh;
+}
+
+/* HEADER PRINCIPAL */
+header {
+    background: linear-gradient(135deg, #022150, #0d4175);
+    color: white;
+    padding: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Título superior */
+header h1 {
+    text-align: center;
+    margin: 0;
+    padding: 15px;
+    font-size: 22px;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* NAVBAR SIMPLE (arriba) */
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px 0;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.navbar .active {
+    background-color: white;
+    color: #1976d2;
+}
+
+/* CONTENEDOR INTERNO */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    flex-wrap: wrap;
+}
+
+/* LOGO */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.water-icon {
+    font-size: 28px;
+}
+
+.logo-text {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* MENÚ PRINCIPAL */
+.main-nav .nav-list {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ACTIVO */
+.nav-link.active {
+    background-color: white;
+    color: #1976d2;
+    font-weight: bold;
+}
+
+/* ICONOS */
+.nav-icon {
+    font-size: 16px;
+}
+
+/* USUARIO */
+.header-actions {
+    display: flex;
+    align-items: center;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+.user-icon {
+    font-size: 16px;
+}
+
+.user-name {
+    font-size: 14px;
+}
+
+/* CONTENIDO */
+router-outlet {
+    display: block;
+    padding: 20px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .main-nav .nav-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
