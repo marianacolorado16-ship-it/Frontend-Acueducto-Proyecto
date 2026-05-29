@@ -1,0 +1,38 @@
+<div class="historial-container">
+  <div class="card shadow-sm">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h6 class="mb-0">Historial de Consumo Mensual (m³)</h6>
+      <button class="btn btn-sm btn-outline-primary" (click)="cargarDatos()" [disabled]="loading">
+        <i class="fas fa-sync" [class.fa-spin]="loading"></i> Actualizar
+      </button>
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover mb-0">
+          <thead class="table-light">
+            <tr>
+              <th>Periodo</th>
+              <th class="text-end">Consumo</th>
+              <th class="text-end text-muted">Prom. 3 Meses</th>
+              <th class="text-end text-muted">Prom. 6 Meses</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of historial">
+              <td class="fw-bold">{{ item.periodo }}</td>
+              <td class="text-end text-primary fw-bold">{{ item.consumoM3 | number:'1.1-3' }} m³</td>
+              <td class="text-end">{{ (item.promedio3m | number:'1.3-3') || '-' }}</td>
+              <td class="text-end">{{ (item.promedio6m | number:'1.3-3') || '-' }}</td>
+            </tr>
+            <tr *ngIf="!loading && historial.length === 0">
+              <td colspan="4" class="text-center py-4 text-muted">
+                No hay registros de consumo para este medidor.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div *ngIf="loading" class="text-center py-3">Cargando datos...</div>
+    </div>
+  </div>
+</div>

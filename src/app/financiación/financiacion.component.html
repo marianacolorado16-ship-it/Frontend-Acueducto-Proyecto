@@ -1,0 +1,77 @@
+<div class="container mt-4">
+  <div class="card shadow">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">Registrar Nueva Financiación</h4>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="financiacionForm" (ngSubmit)="guardar()" class="row g-3">
+        <div class="col-md-3">
+          <label class="form-label">ID del Cliente</label>
+          <input type="number" formControlName="clienteId" class="form-control" placeholder="ID">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Monto a Financiar</label>
+          <div class="input-group">
+            <span class="input-group-text">$</span>
+            <input type="number" formControlName="montoInicial" class="form-control">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Interés Mensual</label>
+          <input type="number" step="0.001" formControlName="interesMensual" class="form-control">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Plazo (Cuotas)</label>
+          <input type="number" formControlName="numeroCuotas" class="form-control">
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Fecha Inicio</label>
+          <input type="date" formControlName="fechaInicio" class="form-control">
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Tipo de Financiación</label>
+          <select formControlName="tipo" class="form-select">
+            <option *ngFor="let t of tiposFinanciacion" [value]="t">{{t}}</option>
+          </select>
+        </div>
+        <div class="col-md-4 d-flex align-items-end">
+          <button type="submit" class="btn btn-primary w-100" [disabled]="financiacionForm.invalid">
+            Generar Financiación
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="card mt-4 shadow-sm">
+    <div class="card-header bg-dark text-white">
+      <h5 class="mb-0">Historial de Financiaciones</h5>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover mb-0">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Cliente ID</th>
+            <th>Monto Base</th>
+            <th>Cuotas</th>
+            <th>Saldo Actual</th>
+            <th>Estado</th>
+            <th>Tipo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let f of financiaciones">
+            <td>{{f.id}}</td>
+            <td>{{f.cliente?.id}}</td>
+            <td>{{f.montoInicial | currency}}</td>
+            <td>{{f.numeroCuotas}}</td>
+            <td>{{f.saldoActual | currency}}</td>
+            <td><span class="badge" [ngClass]="f.estado === 'ACTIVA' ? 'bg-success' : 'bg-warning text-dark'">{{f.estado}}</span></td>
+            <td><small>{{f.tipo}}</small></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

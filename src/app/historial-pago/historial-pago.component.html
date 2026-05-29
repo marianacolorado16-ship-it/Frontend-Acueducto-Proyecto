@@ -1,0 +1,61 @@
+<div class="historial-container">
+  <header>
+    <h1>Historial General de Pagos</h1>
+  </header>
+
+  <!-- Filtros -->
+  <div class="filtros-bar">
+    <input type="number" [(ngModel)]="filtros.clienteId" placeholder="ID Cliente">
+    <input type="number" [(ngModel)]="filtros.facturaId" placeholder="ID Factura">
+    <button (click)="cargarPagos()" class="btn-search">Buscar</button>
+  </div>
+
+  <!-- Tabla de Pagos -->
+  <div class="table-responsive">
+    <table class="main-table">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Cliente</th>
+          <th>Factura</th>
+          <th>Monto</th>
+          <th>Método</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pago of pagos">
+          <td>{{ pago.fechaPago | date:'dd/MM/yyyy HH:mm' }}</td>
+          <td>{{ pago.cliente?.nombres }} {{ pago.cliente?.apellidos }}</td>
+          <td>#{{ pago.factura.id }}</td>
+          <td class="monto">{{ pago.monto | currency }}</td>
+          <td><span class="badge">{{ pago.metodoPago }}</span></td>
+          <td>
+            <button (click)="verAuditoria(pago)" class="btn-detail">Ver Auditoría</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Auditoría (Se muestra si hay un pago seleccionado) -->
+  <div *ngIf="pagoEnDetalle" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Auditoría de Pago #{{ pagoEnDetalle.id }}</h3>
+        <button (click)="cerrarDetalle()" class="btn-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="audit-timeline">
+          <div *ngFor="let log of auditoriaSeleccionada" class="audit-item">
+            <span class="audit-date">{{ log.fechaEvento | date:'short' }}</span>
+            <strong class="audit-action">{{ log.accion }}</strong>
+            <p>{{ log.observacion }}</p>
+            <small>Por: {{ log.usuarioResponsable }}</small>
+          </div>
+          <p *ngIf="auditoriaSeleccionada.length === 0">No hay registros de auditoría adicionales.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

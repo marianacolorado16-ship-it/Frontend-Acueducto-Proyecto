@@ -1,0 +1,54 @@
+<div class="container mt-4">
+  <h2>Generar Nueva Factura</h2>
+  <form [formGroup]="facturaForm" (ngSubmit)="guardarFactura()">
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label>Cliente</label>
+        <input type="text" formControlName="cliente" class="form-control">
+      </div>
+      <div class="col-md-3">
+        <label>RFC</label>
+        <input type="text" formControlName="rfc" class="form-control">
+      </div>
+      <div class="col-md-3">
+        <label>Fecha</label>
+        <input type="date" formControlName="fecha" class="form-control">
+      </div>
+    </div>
+
+    <h4>Conceptos</h4>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Producto/Descripción</th>
+          <th>Cantidad</th>
+          <th>Precio Unit.</th>
+          <th>Subtotal</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody formArrayName="items">
+        <tr *ngFor="let item of items.controls; let i = index" [formGroupName]="i">
+          <td><input formControlName="producto" class="form-control"></td>
+          <td><input type="number" formControlName="cantidad" (input)="calcularTotales()" class="form-control"></td>
+          <td><input type="number" formControlName="precioUnitario" (input)="calcularTotales()" class="form-control"></td>
+          <td>{{ (item.get('cantidad')?.value * item.get('precioUnitario')?.value) | currency }}</td>
+          <td><button type="button" class="btn btn-danger" (click)="removeItem(i)">X</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button type="button" class="btn btn-secondary mb-3" (click)="addItem()">+ Agregar Producto</button>
+
+    <div class="row justify-content-end">
+      <div class="col-md-3">
+        <p><strong>Subtotal:</strong> {{ facturaForm.get('subtotal')?.value | currency }}</p>
+        <p><strong>IVA (16%):</strong> {{ facturaForm.get('iva')?.value | currency }}</p>
+        <hr>
+        <h4><strong>Total:</strong> {{ facturaForm.get('total')?.value | currency }}</h4>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-lg" [disabled]="facturaForm.invalid">Emitir Factura</button>
+  </form>
+</div>

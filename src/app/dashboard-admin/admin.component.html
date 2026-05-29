@@ -1,0 +1,64 @@
+<div class="admin-dashboard">
+  <!-- Sidebar / Topbar Simulation -->
+  <nav class="top-nav">
+    <div class="brand">
+      <i class="fas fa-layer-group"></i>
+      <span>Panel de Control</span>
+    </div>
+    <div class="user-info" *ngIf="usuario">
+      <div class="details">
+        <span class="name">{{ usuario.nombres }} {{ usuario.apellidos }}</span>
+        <span class="role">{{ usuario.rol }}</span>
+      </div>
+      <button class="logout-btn" (click)="cerrarSesion()" title="Cerrar Sesión">
+        <i class="fas fa-sign-out-alt"></i>
+      </button>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <header class="welcome-header">
+      <h1>Bienvenido de nuevo, {{ usuario?.nombres }}</h1>
+      <p>Aquí tienes un resumen del estado actual del sistema de acueducto.</p>
+    </header>
+
+    <!-- Stats Grid -->
+  <section class="stats-grid">
+    <div class="stat-card" *ngFor="let stat of stats" [style.border-top-color]="stat.color">
+      <div class="stat-content">
+        <div class="stat-icon">
+          <img [src]="stat.img" [alt]="stat.label">
+        </div>
+        <div class="stat-info">
+          <span class="label">{{ stat.label }}</span>
+          <span class="value">{{ stat.value }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- Navigation Grid -->
+    <section class="modules-section">
+      <h2>Módulos de Gestión</h2>
+      <div class="menu-grid">
+        <a class="menu-card" *ngFor="let item of menuItems" [routerLink]="item.route" routerLinkActive="active">
+          <div class="card-content">
+            <ng-container *ngIf="item.img; else defaultIcon">
+              <img [src]="item.img" alt="icono" class="menu-icon-img" />
+            </ng-container>
+            <ng-template #defaultIcon>
+              <span class="menu-icon-placeholder"></span>
+            </ng-template>
+            <h3>{{ item.label }}</h3>
+          </div>
+          <div class="card-footer">
+            <span>Ingresar</span>
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <router-outlet></router-outlet>
+  </main>
+</div>

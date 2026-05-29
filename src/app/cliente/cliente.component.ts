@@ -47,7 +47,7 @@ export class ClienteComponent implements OnInit {
     
         this.clienteService.listar().subscribe({
             next: (data) => {
-                this.clientes = data.content || data; // Ajustado por si viene paginado
+                this.clientes = data.content || data;
                 this.cargando = false;
             },
             error: (err: HttpErrorResponse) => {
@@ -185,6 +185,9 @@ export class ClienteComponent implements OnInit {
     }
 
     private obtenerMensajeError(err: HttpErrorResponse, fallback: string): string {
+        if (err.status === 0) {
+            return 'Error de conexión: El servidor no responde o la petición fue bloqueada (CORS).';
+        }
         return err.error?.message || fallback;
     }
 }

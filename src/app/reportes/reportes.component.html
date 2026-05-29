@@ -1,0 +1,73 @@
+<div class="reportes-container">
+  <h1>Módulo de Reportes</h1>
+
+  <div class="filtros-box">
+    <div class="btn-group">
+      <button (click)="cambiarReporte('dashboard')" [class.active]="tipoReporte === 'dashboard'">Dashboard</button>
+      <button (click)="cambiarReporte('recaudo')" [class.active]="tipoReporte === 'recaudo'">Recaudo</button>
+      <button (click)="cambiarReporte('consumo')" [class.active]="tipoReporte === 'consumo'">Consumo</button>
+      <button (click)="cambiarReporte('cartera')" [class.active]="tipoReporte === 'cartera'">Cartera</button>
+      <button (click)="cambiarReporte('inventario')" [class.active]="tipoReporte === 'inventario'">Inventario</button>
+    </div>
+
+    <div class="periodo-selector" *ngIf="tipoReporte === 'recaudo' || tipoReporte === 'consumo'">
+      <label>Período:</label>
+      <input type="month" [(ngModel)]="periodoSeleccionado" (change)="cargarReporte()">
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loader">Cargando reporte...</div>
+
+  <!-- VISTA DASHBOARD -->
+  <div class="dashboard-grid" *ngIf="tipoReporte === 'dashboard'">
+    <div class="card"><h3>Recaudo Mes</h3><p>{{datosDashboard?.recaudoMes | currency}}</p></div>
+    <div class="card warning"><h3>Cartera Pendiente</h3><p>{{datosDashboard?.carteraPendiente | currency}}</p></div>
+    <div class="card"><h3>Clientes Activos</h3><p>{{datosDashboard?.clientesActivos}}</p></div>
+    <div class="card danger"><h3>Items Bajo Stock</h3><p>{{datosDashboard?.inventarioItemsBajoStock}}</p></div>
+  </div>
+
+  <!-- VISTA TABLAS (RECAUDO / CONSUMO / INVENTARIO) -->
+  <div class="table-container" *ngIf="['recaudo', 'consumo', 'inventario'].includes(tipoReporte)">
+    <table>
+      <thead>
+        <tr *ngIf="tipoReporte === 'recaudo'">
+          <th>Cliente</th>
+          <th>Facturado</th>
+          <th>Pagado</th>
+          <th>Pendiente</th>
+        </tr>
+        <tr *ngIf="tipoReporte === 'consumo'">
+          <th>Cliente</th>
+          <th>Medidor</th>
+          <th>Consumo M3</th>
+          <th>Prom. 3 Meses</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of listaResultados">
+          <td *ngIf="tipoReporte === 'recaudo'">{{item.clienteNombre}}</td>
+          <td *ngIf="tipoReporte === 'recaudo'">{{item.totalFacturado | currency}}</td>
+          <td *ngIf="tipoReporte === 'recaudo'">{{item.totalPagado | currency}}</td>
+          <td *ngIf="tipoReporte === 'recaudo'" class="text-danger">{{item.saldoPendiente | currency}}</td>
+          
+          <td *ngIf="tipoReporte === 'consumo'">{{item.clienteNombre}}</td>
+          <td *ngIf="tipoReporte === 'consumo'">{{item.numeroMedidor}}</td>
+          <td *ngIf="tipoReporte === 'consumo'">{{item.consumoM3}}</td>
+          <td *ngIf="tipoReporte === 'consumo'">{{item.promedio3Meses}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- VISTA CARTERA ENVEJECIDA -->
+  <div class="cartera-box" *ngIf="tipoReporte === 'cartera'">
+    <div class="resumen-cartera">
+      <div class="rango"><span>0-30 días:</span> <strong>{{datosCartera?.monto0_30Dias | currency}}</strong> ({{datosCartera?.cuentas0_30Dias}} cuentas)</div>
+      <div class="rango"><span>30-60 días:</span> <strong>{{datosCartera?.monto30_60Dias | currency}}</strong> ({{datosCartera?.cuentas30_60Dias}} cuentas)</div>
+      <div class="rango"><span>60-90 días:</span> <strong>{{datosCartera?.monto60_90Dias | currency}}</strong> ({{datosCartera?.cuentas60_90Dias}} cuentas)</div>
+      <div class="rango danger"><span>+90 días:</span> <strong>{{datosCartera?.monto90PlusDias | currency}}</strong> ({{datosCartera?.cuentas90PlusDias}} cuentas)</div>
+      <hr>
+      <div class="total"><span>TOTAL MORA:</span> <strong>{{datosCartera?.totalMontoVencido | currency}}</strong></div>
+    </div>
+  </div>
+</div>

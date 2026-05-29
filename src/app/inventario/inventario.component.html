@@ -1,0 +1,35 @@
+<div class="inventario-lista">
+  <h2>Inventario</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Cantidad</th>
+        <th>Ubicación</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items" (click)="seleccionarItem(item)">
+        <td>{{ item.id }}</td>
+        <td>{{ item.nombre }}</td>
+        <td>{{ item.descripcion }}</td>
+        <td>{{ item.cantidad }}</td>
+        <td>{{ item.ubicacion }}</td>
+        <td>{{ item.estado }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="selectedItem" class="detalle">
+    <h3>Detalle de Inventario</h3>
+    <p>ID: {{ selectedItem?.id }}</p>
+    <p>Nombre: {{ selectedItem?.nombre }}</p>
+    <p>Descripción: {{ selectedItem?.descripcion }}</p>
+    <p>Cantidad: {{ selectedItem?.cantidad }}</p>
+    <p>Ubicación: {{ selectedItem?.ubicacion }}</p>
+    <p>Estado: {{ selectedItem?.estado }}</p>
+  </div>
+</div>

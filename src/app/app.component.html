@@ -1,46 +1,29 @@
-<main class="app-shell">
-  <header>
-    <h1>Gestión de Usuarios y Clientes</h1>
-  
-    <div class="header-container">
-        <div class="logo-section">
-            <div class="logo">
-                <span class="water-icon">💧</span>
-                <span class="logo-text">Acueducto Veredal</span>
-            </div>
-        </div>
+<header class="header">
 
-        <nav class="main-nav">
-            <ul class="nav-list">
-                <li class="nav-item">
-                    <a routerLink="/" routerLinkActive="active" class="nav-link">
-                        <span class="nav-icon">🏠</span>
-                        Inicio
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a routerLink="/cliente" routerLinkActive="active" class="nav-link">
-                        <span class="nav-icon">👥</span>
-                        Clientes
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a routerLink="/usuario" routerLinkActive="active" class="nav-link">
-                        <span class="nav-icon">👤</span>
-                        Usuarios
-                    </a>
-                </li>
-            </ul>
-        </nav>
-
-        <div class="header-actions">
-            <div class="user-info">
-                <span class="user-icon">👤</span>
-                <span class="user-name">Usuario</span>
-            </div>
-        </div>
+    <div class="logo">
+        <img src="assets/ahorrar-agua.png" alt="Manantial de Vida" class="header-logo">
     </div>
-</header>
-<router-outlet></router-outlet>
-</main>
 
+    <nav class="navbar">
+        <a href="#home" [class.active]="activeSection === 'home'">Inicio</a>
+        <a href="#conocenos" [class.active]="activeSection === 'conocenos'">Conócenos</a>
+        <a href="#beneficios" [class.active]="activeSection === 'beneficios'">Beneficios</a>
+        <a href="#servicios-detallados" [class.active]="activeSection === 'servicios-detallados'">Servicios Detallados</a>
+        <a href="#como-funciona" [class.active]="activeSection === 'como-funciona'">Cómo Funciona</a>
+        <a href="#planes" [class.active]="activeSection === 'planes'">Planes</a>
+        <a href="#nuestros-servicios" [class.active]="activeSection === 'nuestros-servicios'">Nuestros Servicios</a>
+        <a href="#contacto" [class.active]="activeSection === 'contacto'">Contacto</a>
+
+    </nav>
+
+    <div class="buttons">
+
+    <button class="login-btn" routerLink="/login">
+        Iniciar Sesión
+    </button>
+
+    </div>
+
+</header>
+
+<router-outlet></router-outlet>

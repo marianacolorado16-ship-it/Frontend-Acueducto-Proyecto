@@ -1,0 +1,9 @@
+export interface Auditoria {
+  id?: number;
+  usuario: string;
+  accion: string;
+  modulo: string;
+  descripcion: string;
+  fecha: string | Date;
+  ip: string;
+}

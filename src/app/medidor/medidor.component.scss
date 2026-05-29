@@ -1,0 +1,170 @@
+// ==========================================================================
+// Variables & Configuración
+// ==========================================================================
+$primary: #0369a1; // Azul oceánico profesional (Steel Blue)
+$secondary: #64748b;
+$bg-body: #f8fafc; // Fondo ligeramente más claro y limpio
+$white: #ffffff;
+$text-main: #1e293b; // Gris muy oscuro (evita el negro puro)
+$text-muted: #64748b; // Gris medio para textos secundarios
+$border: #e2e8f0;
+
+// Mixins para reutilización
+@mixin card-shadow {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+@mixin transition-standard {
+  transition: all 0.2s ease-in-out;
+}
+
+// ==========================================================================
+// Contenedor Principal
+// ==========================================================================
+:host {
+  display: block;
+  background-color: $bg-body;
+  min-height: 100vh;
+  padding-top: 1rem;
+}
+
+.container {
+  max-width: 1200px;
+  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+}
+
+// ==========================================================================
+// Tipografía y Encabezados
+// ==========================================================================
+h2 {
+  color: $text-main;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+
+.badge {
+  padding: 0.5em 1em;
+  font-weight: 600;
+  border-radius: 6px;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+// ==========================================================================
+// Tarjetas (Cards)
+// ==========================================================================
+.card {
+  border-radius: 12px;
+  border: 1px solid $border;
+  @include card-shadow;
+  overflow: hidden;
+  background-color: $white;
+  @include transition-standard;
+
+  .card-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    
+    &.bg-success {
+      background: linear-gradient(135deg, #0c4a6e 0%, #0284c7 100%) !important; // Degradado sofisticado de agua
+    }
+  }
+
+  .card-body {
+    padding: 1.5rem;
+  }
+}
+
+// ==========================================================================
+// Formularios e Inputs
+// ==========================================================================
+.form-label {
+  color: $text-main;
+  margin-bottom: 0.4rem;
+}
+
+.form-control, .form-select {
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid $border;
+  color: $text-main;
+  @include transition-standard;
+
+  &:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+    outline: none;
+  }
+
+  &::placeholder {
+    color: #94a3b8;
+    font-weight: 400;
+  }
+}
+
+// ==========================================================================
+// Tablas
+// ==========================================================================
+.table {
+  thead th {
+    background-color: #f8fafc;
+    color: $text-muted;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    padding: 1rem 1.5rem;
+    border-top: none;
+  }
+
+  tbody td {
+    padding: 1rem 1.5rem;
+    color: $text-main;
+    border-bottom-color: $border;
+    font-size: 0.95rem;
+  }
+
+  tbody tr {
+    @include transition-standard;
+    &:hover {
+      background-color: #f8fafc;
+    }
+  }
+}
+
+// ==========================================================================
+// Botones y Acciones
+// ==========================================================================
+.btn {
+  padding: 0.6rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 600;
+  @include transition-standard;
+
+  &.btn-primary {
+    background-color: $primary;
+    border-color: $primary;
+    &:hover {
+      background-color: lighten($primary, 5%);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(3, 105, 161, 0.15); // Sombra más sutil
+    }
+  }
+
+  &.btn-outline-primary, &.btn-outline-danger {
+    border-width: 1.5px;
+  }
+}
+
+// ==========================================================================
+// Responsive
+// ==========================================================================
+@media (max-width: 992px) {
+  .col-md-3, .col-md-4, .col-md-2 {
+    margin-bottom: 0.5rem;
+  }
+}

@@ -1,0 +1,76 @@
+<div class="pago-container">
+  <h2>Gestión de Pagos</h2>
+
+  <!-- Alerta de Error -->
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+  <!-- Formulario de Registro -->
+  <section class="pago-form-section">
+    <h3>Registrar Nuevo Pago</h3>
+    <form [formGroup]="pagoForm" (ngSubmit)="onSubmit()">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Factura / Deuda</label>
+          <select formControlName="facturaId">
+            <option value="">Seleccione una factura...</option>
+            <option *ngFor="let f of facturasVencidas" [value]="f.id">
+              Factura #{{f.id}} - {{f.cliente?.nombres}} (Saldo: {{f.saldoPendiente | currency}})
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Monto a Pagar</label>
+          <input type="number" formControlName="monto" placeholder="0.00">
+        </div>
+
+        <div class="form-group">
+          <label>Método de Pago</label>
+          <select formControlName="metodoPago">
+            <option value="EFECTIVO">Efectivo</option>
+            <option value="TRANSFERENCIA">Transferencia</option>
+            <option value="TARJETA">Tarjeta</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Referencia (Opcional)</label>
+          <input type="text" formControlName="referencia" placeholder="Num. Transacción">
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="pagoForm.invalid || loading" class="btn-primary">
+        {{ loading ? 'Procesando...' : 'Registrar Pago' }}
+      </button>
+    </form>
+  </section>
+
+  <hr>
+
+  <!-- Tabla de Historial -->
+  <section class="pago-list-section">
+    <h3>Historial Reciente de Pagos</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Fecha</th>
+          <th>Cliente</th>
+          <th>Factura</th>
+          <th>Método</th>
+          <th>Monto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of pagos">
+          <td>{{ p.id }}</td>
+          <td>{{ p.fechaPago | date:'short' }}</td>
+          <td>{{ p.cliente?.nombres }} {{ p.cliente?.apellidos }}</td>
+          <td>#{{ p.factura.id }}</td>
+          <td>{{ p.metodoPago }}</td>
+          <td>{{ p.monto | currency }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>

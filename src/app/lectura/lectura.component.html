@@ -1,0 +1,82 @@
+<div class="container mt-4">
+  <h2>Gestión de Lecturas de Consumo</h2>
+
+  <!-- SECCIÓN DE REGISTRO: Solo visible para OPERADOR y ADMIN -->
+  <div class="card mb-4" *ngIf="userRole === 'OPERADOR' || userRole === 'ADMIN'">
+    <div class="card-header bg-primary text-white">
+      <h5>Registrar Nueva Lectura</h5>
+    </div>
+    <div class="card-body">
+      <form (submit)="guardarLectura()" class="row g-3">
+        <div class="col-md-3">
+          <label class="form-label">ID Medidor</label>
+          <input type="number" class="form-control" [(ngModel)]="nuevaLectura.medidor.id" name="medidorId" required>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Periodo (YYYY-MM)</label>
+          <input type="month" class="form-control" [(ngModel)]="nuevaLectura.periodo" name="periodo" required>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Lectura Anterior</label>
+          <input type="number" class="form-control" [(ngModel)]="nuevaLectura.lecturaAnterior" name="anterior" readonly>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Lectura Actual</label>
+          <input type="number" class="form-control" [(ngModel)]="nuevaLectura.lecturaActual" (input)="calcularConsumo()" name="actual" required>
+        </div>
+        <div class="col-md-12 text-end">
+          <span class="me-3"><strong>Consumo calculado:</strong> {{ nuevaLectura.consumoM3 }} m³</span>
+          <button type="submit" class="btn btn-success">Guardar Lectura</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- SECCIÓN DE LISTADO: Visible para ADMIN, PRESIDENTE y OPERADOR -->
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h5>Historial de Lecturas</h5>
+      <span class="badge bg-info text-dark">Vista: {{ userRole }}</span>
+    </div>
+    <div class="card-body">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Medidor</th>
+            <th>Periodo</th>
+            <th>Fecha</th>
+            <th>Anterior</th>
+            <th>Actual</th>
+            <th>Consumo</th>
+            <!-- Columna sensible: Solo para ADMIN y PRESIDENTE -->
+            <th *ngIf="userRole === 'ADMIN' || userRole === 'PRESIDENTE'">Registrado Por</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let l of lecturas">
+            <td>{{ l.medidor.codigoSerie }}</td>
+            <td>{{ l.periodo }}</td>
+            <td>{{ l.fechaLectura | date:'dd/MM/yyyy' }}</td>
+            <td>{{ l.lecturaAnterior }}</td>
+            <td>{{ l.lecturaActual }}</td>
+            <td class="fw-bold text-primary">{{ l.consumoM3 }} m³</td>
+            <!-- Ver quien registró: Importante para Auditoría -->
+            <td *ngIf="userRole === 'ADMIN' || userRole === 'PRESIDENTE'">
+              {{ l.registradoPor?.nombres }} {{ l.registradoPor?.apellidos }}
+            </td>
+            <td>
+              <button class="btn btn-sm btn-outline-secondary" title="Ver detalles">
+                <i class="bi bi-eye"></i>
+              </button>
+              <!-- Eliminar solo ADMIN -->
+              <button class="btn btn-sm btn-outline-danger ms-1" *ngIf="userRole === 'ADMIN'">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

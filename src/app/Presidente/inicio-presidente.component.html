@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="header-section d-flex justify-content-between align-items-center mb-5">
+    <div>
+      <h2 class="mb-0">Panel de Control Presidencial</h2>
+      <p class="text-muted">Bienvenido de nuevo, {{ usuario?.username }}</p>
+    </div>
+    <button class="btn btn-outline-danger btn-logout" (click)="cerrarSesion()">
+      Cerrar Sesión
+    </button>
+  </div>
+
+  <div class="row g-4">
+    <!-- Card Financiación -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card shadow-sm h-100 action-card" routerLink="/financiacion">
+        <div class="card-body text-center p-4">
+          <div class="icon-wrapper mb-3">💰</div>
+          <h4>Gestión de Financiación</h4>
+          <p>Supervise los planes de pago y cuotas de los clientes activos.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card Inventario -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card shadow-sm h-100 action-card" routerLink="/inventario">
+        <div class="card-body text-center p-4">
+          <div class="icon-wrapper mb-3">📦</div>
+          <h4>Inventario General</h4>
+          <p>Consulte el stock actual y la disponibilidad de materiales.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card Movimientos -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card shadow-sm h-100 action-card" routerLink="/movimiento-inventario">
+        <div class="card-body text-center p-4">
+          <div class="icon-wrapper mb-3">🔄</div>
+          <h4>Auditoría de Movimientos</h4>
+          <p>Revise el historial de entradas y salidas del almacén.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

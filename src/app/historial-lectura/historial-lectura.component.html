@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="card-header">
+    <h5>Historial de Cambios en Lectura #{{ lecturaId }}</h5>
+  </div>
+  <div class="card-body">
+    <div *ngIf="loading" class="text-center">Cargando...</div>
+    
+    <table class="table table-striped" *ngIf="!loading">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Acción</th>
+          <th>Valor Anterior</th>
+          <th>Valor Nuevo</th>
+          <th>Motivo</th>
+          <th>Usuario</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let evento of historial">
+          <td>{{ evento.fechaEvento | date:'dd/MM/yyyy HH:mm' }}</td>
+          <td><span class="badge badge-info">{{ evento.accion }}</span></td>
+          <td>{{ evento.valorAnterior | number:'1.3-3' }} m³</td>
+          <td>{{ evento.valorNuevo | number:'1.3-3' }} m³</td>
+          <td>{{ evento.motivo }}</td>
+          <td>{{ evento.usuarioNombre || 'Sistema' }}</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <div *ngIf="!loading && historial.length === 0" class="alert alert-light">
+      No se registran cambios para esta lectura.
+    </div>
+  </div>
+</div>

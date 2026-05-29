@@ -1,0 +1,32 @@
+<div class="login-wrapper">
+  <div class="overlay">
+  <div class="login-card">
+    <div class="login-header">
+      <!-- Puedes insertar un logo si tienes uno pequeño para la marca -->
+      <img src="../../assets/ahorrar-agua.png" alt="Manantial de Vida Logo" class="login-logo">
+      <h2>Iniciar Sesión</h2>
+      <p>Accede a la plataforma de gestión de acueducto</p>
+    </div>
+    <form class="login-form" (ngSubmit)="iniciarSesion()">
+      <div class="form-group">
+        <label for="email">Usuario</label>
+        <input type="text" id="email" name="username" [(ngModel)]="datos.username" placeholder="Tu usuario" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" name="password" [(ngModel)]="datos.password" placeholder="••••••••" required>
+        <div class="forgot-password">
+          <a href="#">¿Olvidaste tu contraseña?</a>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-login">
+        Ingresar
+      </button>
+
+      <div class="login-footer">¿Necesitas ayuda? <a href="#">Contáctanos</a></div>
+    </form>
+  </div>
+  </div>
+</div>

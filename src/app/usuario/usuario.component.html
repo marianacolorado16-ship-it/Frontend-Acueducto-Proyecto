@@ -1,89 +1,52 @@
-<section class="page">
-	<h2>Usuario</h2>
-	<p class="subtitle">CRUD al backend con SpringBoot</p>
+<div class="container">
+  	<h2>Gestión de Usuarios</h2>
 
-	<div class="alerts">
-		@if (mensaje) {
-			<p class="sucess">{{ mensaje }}</p>
-		}
-		@if (error) {
-			<p class="error">{{ error }}</p>
-		}
-	</div>
+  	<!-- Filtros -->
+  	<div class="filters">
+    	<input type="text" [(ngModel)]="busqueda" (input)="onSearch()" placeholder="Buscar por nombre, email o username...">
+    
+    <select [(ngModel)]="estadoFiltro" (change)="onSearch()">
+      	<option value="">Todos los estados</option>
+     	<option value="ACTIVO">Activo</option>
+      	<option value="INACTIVO">Inactivo</option>
+    </select>
 
-	<div class="search-box">
-		<input
-			type="text"
-			[formControl]="filtroBusqueda"
-			placeholder="Buscar usuario"
-		/>
-		<button type="button" (click)="buscar()">Buscar</button>
-		<button type="button" class="secondary" (click)="limpiarBusqueda()">Limpiar</button>
-	</div>
+    <button class="btn-primary">Nuevo Usuario</button>
+  	</div>
 
-	<form [formGroup]="form" (ngSubmit)="guardar()" class="form-grid">
-		<input type="text" formControlName="username" placeholder="username" />
-		<input type="email" formControlName="email" placeholder="email" />
-		<input type="password" formControlName="passwordHash" placeholder="password" />
+  	<!-- Tabla -->
+  	<table>
+    	<thead>
+      	<tr>
+        	<th>Username</th>
+        	<th>Nombre Completo</th>
+        	<th>Email</th>
+        	<th>Rol</th>
+        	<th>Estado</th>
+        	<th>Acciones</th>
+      	</tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let u of usuarios">
+        <td>{{ u.username }}</td>
+        <td>{{ u.nombres }} {{ u.apellidos }}</td>
+        <td>{{ u.email }}</td>
+        <td><span class="badge-rol">{{ u.rol }}</span></td>
+        <td>
+          	<span [class]="u.estado === 'ACTIVO' ? 'text-success' : 'text-danger'">
+            	{{ u.estado }}
+          	</span>
+        </td>
+        <td>
+          <button (click)="eliminarUsuario(u.id!)" *ngIf="u.estado === 'ACTIVO'">Desactivar</button>
+        </td>
+      	</tr>
+    </tbody>
+  	</table>
 
-		<select formControlName="estado">
-			<option value="ACTIVO">Activo</option>
-			<option value="INACTIVO">Inactivo</option>
-		</select>
+  	<div class="pagination-info">
+    Total de registros: {{ totalElements }}
+  	</div>
+</div>
 
-		<fieldset class="roles-group">
-			<legend>Roles</legend>
-			@for (role of availableRoles; track role.id) {
-				<label>
-					<input
-						type="checkbox"
-						[checked]="hasRole(role)"
-						(change)="toggleRole(role)"
-					/>
-					{{ role.nombre }}
-				</label>
-			}
-		</fieldset>
 
-		<div class="form-actions">
-			<button type="submit" [disabled]="form.invalid">
-				{{ editandoId ? 'Actualizar' : 'Guardar' }}
-			</button>
-			@if (editandoId !== null) {
-				<button type="button" class="secondary" (click)="cancelarEdicion()">Cancelar</button>
-			}
-		</div>
-	</form>
-
-	<hr />
-
-	@if (cargando) {
-		<p class="loading">Cargando usuarios...</p>
-	} @else {
-		<table class="data-table">
-			<thead>
-				<tr>
-					<th>Usuario</th>
-					<th>Email</th>
-					<th>Estado</th>
-					<th>Roles</th>
-					<th>Acciones</th>
-				</tr>
-			</thead>
-			<tbody>
-				@for (usuario of usuarios; track usuario.id) {
-					<tr>
-						<td>{{ usuario.username }}</td>
-						<td>{{ usuario.email }}</td>
-						<td>{{ usuario.estado }}</td>
-						<td>{{ getRolesText(usuario) }}</td>
-						<td>
-							<button class="btn-edit" (click)="iniciarEdicion(usuario)">Editar</button>
-							<button class="btn-delete" (click)="eliminar(usuario.id)">Eliminar</button>
-						</td>
-					</tr>
-				}
-			</tbody>
-		</table>
-	}
-</section>

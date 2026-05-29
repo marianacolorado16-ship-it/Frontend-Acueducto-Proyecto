@@ -1,0 +1,32 @@
+<div class="cuota-lista">
+  <h2>Cuotas de Financiación</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Monto</th>
+        <th>Vencimiento</th>
+        <th>Estado</th>
+        <th>Financiación</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cuota of cuotas" (click)="seleccionarCuota(cuota)">
+        <td>{{ cuota.id }}</td>
+        <td>{{ cuota.monto }}</td>
+        <td>{{ cuota.fechaVencimiento | date }}</td>
+        <td>{{ cuota.estado }}</td>
+        <td>{{ cuota.financiacionId }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="selectedCuota" class="detalle">
+    <h3>Detalle de Cuota</h3>
+    <p>ID: {{ selectedCuota?.id }}</p>
+    <p>Monto: {{ selectedCuota?.monto }}</p>
+    <p>Vencimiento: {{ selectedCuota?.fechaVencimiento | date }}</p>
+    <p>Estado: {{ selectedCuota?.estado }}</p>
+    <p>Financiación: {{ selectedCuota?.financiacionId }}</p>
+  </div>
+</div>

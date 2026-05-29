@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="header-section d-flex justify-content-between align-items-center mb-5">
+    <div>
+      <h2 class="mb-0">Mi Portal de Usuario</h2>
+      <p class="text-muted">Hola, {{ usuario?.username }}. Gestiona tu servicio aquí.</p>
+    </div>
+    <button class="btn btn-outline-danger btn-logout" (click)="cerrarSesion()">
+      Cerrar Sesión
+    </button>
+  </div>
+
+  <div class="row g-4">
+    <!-- Card Consumo -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card shadow-sm h-100 action-card" routerLink="/mi-consumo">
+        <div class="card-body text-center p-4">
+          <div class="icon-wrapper mb-3">💧</div>
+          <h4>Mi Consumo</h4>
+          <p>Consulta tu historial de consumo mensual y gráficos de uso.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card Pagos -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card shadow-sm h-100 action-card" routerLink="/pagos">
+        <div class="card-body text-center p-4">
+          <div class="icon-wrapper mb-3">💳</div>
+          <h4>Pagar Factura</h4>
+          <p>Realiza tus pagos en línea de forma segura y descarga tus recibos.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card PQRS -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card shadow-sm h-100 action-card" routerLink="/mis-pqrs">
+        <div class="card-body text-center p-4">
+          <div class="icon-wrapper mb-3">📝</div>
+          <h4>Peticiones y Quejas</h4>
+          <p>Radica nuevas solicitudes y haz seguimiento a tus trámites.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

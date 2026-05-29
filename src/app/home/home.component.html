@@ -1,151 +1,293 @@
-<!-- Vista Principal - Sistema de Acueducto -->
-<section class="hero-section">
-    <div class="hero-content">
-        <div class="hero-text">
-            <h1 class="hero-title">
-                <span class="water-icon">💧</span>
-                Bienvenido al Sistema de Acueducto
-            </h1>
-            <p class="hero-subtitle">
-                Gestiona tu consumo de agua, paga tus facturas y mantente informado sobre el servicio
+<section id="inicio" class="hero" [style.backgroundImage]="currentBg">
+  <div class="overlay">
+    <div class="hero-content content-wrapper">
+      <h1>Manantial de Vida</h1>
+      <p>
+        Facturación y gestión para acueductos rurales. Administra clientes, pagos y lecturas desde un solo lugar.
+      </p>
+
+      <button routerLink="/login">
+        Empezar ahora
+      </button>
+    </div>
+  </div>
+</section>
+
+  <div class="contenido-principal">
+    <!-- Sección: Conócenos -->
+    <section id="conocenos" class="seccion-conocenos"> <!-- Ya tiene id="conocenos" -->
+      <div class="content-wrapper">
+        <h2 class="titulo-seccion">Tecnología para la gestión de acueductos rurales</h2>
+        
+        <div class="contenido-conocenos">
+          <!-- Columna de Texto -->
+          <div class="texto-conocenos">
+            <h3>¿Cómo funciona nuestra plataforma?</h3>
+            <p>
+              Es una herramienta diseñada para que los clientes de acueductos rurales puedan gestionar sus pagos, lecturas y facturación de manera eficiente. Con una interfaz intuitiva, permite a los usuarios acceder a su información de consumo, realizar pagos en línea y mantenerse al día con sus obligaciones de manera sencilla.
             </p>
+            <p class="resaltado">
+              Nuestra plataforma es la solución ideal para acueductos rurales 
+              <strong>que buscan modernizar su gestión y ofrecer un servicio más eficiente</strong> a sus clientes.
+            </p>
+          </div>
+
+          <!-- Columna de Imagen -->
+          <div class="imagen-conocenos">
+            <img src="../../assets/conocenos.png" alt="Interfaz de logo de sistema">
+          </div>
         </div>
-        <div class="hero-visual">
-            <div class="water-drop">
-                <span class="drop-icon">💧</span>
+      </div>
+    </section>
+
+    <section id="beneficios" class="seccion-beneficios">
+      <div class="content-wrapper">
+        <h2 class="titulo-seccion">Mejora la eficiencia de tu administración</h2>
+        <p class="intro-seccion">
+          Nuestro sistema ha sido creado para simplificar las tareas administrativas de tu acueducto, reduciendo tiempos, costos y errores en el proceso de facturación y recaudo.
+        </p>
+
+        <div class="grid-beneficios">
+
+          <!-- Tarjeta 1 -->
+          <div class="tarjeta-beneficio">
+            <div class="icono-tarjeta" style="background-color: #2B6CB0;">
+              <img src="../../assets/automatizacion.png" alt="Actualización automática">
             </div>
+            <h3 class="titulo-tarjeta">Actualización automática</h3>
+            <p class="descripcion-tarjeta">Cada vez que se registra un pago, los datos se actualizan al instante sin procesos manuales.</p>
+          </div>
+
+          <!-- Tarjeta 2: Acceso desde cualquier lugar -->
+          <div class="tarjeta-beneficio">
+            <div class="icono-tarjeta" style="background-color: #38A169;">
+              <img src="../../assets/telefono-inteligente.png" alt="Acceso desde cualquier lugar">
+            </div>
+            <h3 class="titulo-tarjeta">Acceso remoto</h3>
+            <p class="descripcion-tarjeta">Consulta y modifica la información desde cualquier dispositivo y lugar gracias a la nube.</p>
+          </div>
+
+          <!-- Tarjeta 3: Protección de datos -->
+          <div class="tarjeta-beneficio">
+            <div class="icono-tarjeta" style="background-color: #805AD5;">
+              <img src="../../assets/informacion-personal.png" alt="Protección de datos">
+            </div>
+            <h3 class="titulo-tarjeta">Protección de datos</h3>
+            <p class="descripcion-tarjeta">Servidores seguros con cifrado avanzado. Tu información está protegida contra pérdidas.</p>
+          </div>
+
+          <!-- Tarjeta 4: Cambios en tiempo real -->
+          <div class="tarjeta-beneficio">
+            <div class="icono-tarjeta" style="background-color: #DD6B20;">
+              <img src="../../assets/tiempo-real.png" alt="Cambios en tiempo real">
+            </div>
+            <h3 class="titulo-tarjeta">Cambios en tiempo real</h3>
+            <p class="descripcion-tarjeta">Registros de usuarios y ajustes de valores reflejados de inmediato en la plataforma.</p>
+          </div>
+
+          <!-- Tarjeta 5 -->
+          <div class="tarjeta-beneficio">
+            <div class="icono-tarjeta" style="background-color: #D53F8C;">
+              <img src="../../assets/no-wifi.png" alt="Funcionamiento sin conexión">
+            </div>
+            <h3 class="titulo-tarjeta">Funcionamiento sin conexión</h3>
+            <p class="descripcion-tarjeta">Ideal para zonas rurales. Registra datos offline y sincroniza cuando detecte red.</p>
+          </div>
+
+          <!-- Tarjeta 6: Uso en dispositivos móviles -->
+          <div class="tarjeta-beneficio">
+            <div class="icono-tarjeta" style="background-color: #ED8936;">
+              <img src="../../assets/dispositivos.png" alt="Uso en dispositivos móviles">
+            </div>
+            <h3 class="titulo-tarjeta">Compatibilidad móvil</h3>
+            <p class="descripcion-tarjeta">Diseño responsivo que se adapta a cualquier tamaño de pantalla y sistema operativo.</p>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <section id="servicios-detallados" class="seccion-servicios"> <!-- Renombrado para evitar conflicto con 'nuestros-servicios' -->
+    <div class="content-wrapper">
+      <h2 class="titulo-seccion">Servicios adaptados a tus necesidades</h2>
+
+      <div class="contenido-servicios">
+        <!-- Para los usuarios -->
+        <div class="bloque-servicios">
+          <h3 class="titulo-bloque">Para los usuarios del servicio</h3>
+          <div class="lista-servicios">
+            <div class="item-servicio">
+              <h4>Pago de facturas</h4>
+              <p>Cuenta con varias opciones para realizar el pago: desde plataformas digitales hasta puntos de recaudo físicos cercanos a tu comunidad, para que elijas la forma más cómoda para ti.</p>
+            </div>
+            <div class="item-servicio">
+              <h4>Consulta de información</h4>
+              <p>Puedes ver tus comprobantes, el estado de tus pagos y tu historial de consumo en cualquier momento, sin tener que acercarte a las oficinas del acueducto.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Para los administradores -->
+        <div class="bloque-servicios">
+          <h3 class="titulo-bloque">Para los administradores</h3>
+          <div class="lista-servicios">
+            <div class="item-servicio">
+              <h4>Gestión administrativa</h4>
+              <p>Herramientas completas para organizar la información de los usuarios, registrar cambios y mantener actualizados todos los datos del acueducto desde un solo lugar.</p>
+            </div>
+            <div class="item-servicio">
+              <h4>Gestión de lecturas y cobros</h4>
+              <p>Procesos sencillos para registrar lecturas, generar documentos de cobro y llevar el control de los pagos, todo sin necesidad de depender de conexión a internet en el campo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</section>
+  </section>
 
-<!-- Servicios Principales -->
-<section class="services-section">
-    <div class="container">
-        <h2 class="section-title">Nuestros Servicios</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">📊</div>
-                <h3>Consulta de Consumo</h3>
-                <p>Revisa tu historial de consumo de agua y estadísticas detalladas</p>
-                <button class="service-btn">Ver Consumo</button>
-            </div>
 
-            <div class="service-card">
-                <div class="service-icon">💳</div>
-                <h3>Pagos en Línea</h3>
-                <p>Paga tus facturas de manera segura y rápida desde cualquier lugar</p>
-                <button class="service-btn">Pagar Factura</button>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon">📱</div>
-                <h3>Reportes y PQRS</h3>
-                <p>Reporta inconvenientes, solicita servicios o realiza consultas</p>
-                <button class="service-btn">Crear PQRS</button>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon">📋</div>
-                <h3>Historial de Facturas</h3>
-                <p>Accede a todas tus facturas anteriores y comprobantes de pago</p>
-                <button class="service-btn">Ver Facturas</button>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon">🔧</div>
-                <h3>Mantenimiento</h3>
-                <p>Solicita reparaciones, instalación de medidores y otros servicios</p>
-                <button class="service-btn">Solicitar Servicio</button>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon">📞</div>
-                <h3>Atención al Cliente</h3>
-                <p>Contacta con nuestro equipo de soporte especializado</p>
-                <button class="service-btn">Contactar</button>
-            </div>
+  <!-- Sección: Cómo funciona -->
+  <section id="como-funciona" class="seccion-funcionamiento">
+    <div class="content-wrapper">
+      <h2 class="titulo-seccion">Cómo usar la plataforma en el campo</h2>
+      <div class="pasos-funcionamiento">
+        <div class="paso-item">
+          <div class="numero-paso">1</div>
+          <h3>Registro de datos sin internet</h3>
+          <p>Al recorrer las viviendas o fincas, puedes ingresar los datos de consumo y las lecturas directamente en el dispositivo, sin necesidad de estar conectado a la red. La información se guarda localmente y se envía al sistema cuando vuelves a tener acceso.</p>
         </div>
-    </div>
-</section>
-
-<!-- Información Importante -->
-<section class="info-section">
-    <div class="container">
-        <div class="info-grid">
-            <div class="info-card">
-                <div class="info-icon">⚠️</div>
-                <h3>Avisos Importantes</h3>
-                <ul class="info-list">
-                    <li>Mantenimiento programado: 15 de mayo, 2:00 AM - 4:00 AM</li>
-                    <li>Nueva tarifa de acueducto vigente desde el 1 de junio</li>
-                    <li>Recordatorio: Pago de facturas vence el último día del mes</li>
-                </ul>
-            </div>
-
-            <div class="info-card">
-                <div class="info-icon">💡</div>
-                <h3>Tips de Ahorro</h3>
-                <ul class="info-list">
-                    <li>Cierra el grifo mientras te cepillas los dientes</li>
-                    <li>Repara las goteras inmediatamente</li>
-                    <li>Usa regaderas de bajo consumo</li>
-                </ul>
-            </div>
-
-            <div class="info-card">
-                <div class="info-icon">📈</div>
-                <h3>Estadísticas del Mes</h3>
-                <div class="stats">
-                    <div class="stat-item">
-                        <span class="stat-number">850 m³</span>
-                        <span class="stat-label">Consumo Total</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">1,200</span>
-                        <span class="stat-label">Usuarios Activos</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">98%</span>
-                        <span class="stat-label">Cobertura</span>
-                    </div>
-                </div>
-            </div>
+        <div class="paso-item">
+          <div class="numero-paso">2</div>
+          <h3>Reducción de costos y tiempos</h3>
+          <p>Al automatizar tareas y eliminar procesos manuales, se reducen los gastos operativos y se acortan los tiempos de entrega de documentos y cobros. Además, se evitan errores que suelen presentarse con registros en papel.</p>
         </div>
-    </div>
-</section>
-
-<!-- Contacto Rápido -->
-<section class="contact-section">
-    <div class="container">
-        <h2 class="section-title">¿Necesitas Ayuda?</h2>
-        <div class="contact-grid">
-            <div class="contact-item">
-                <div class="contact-icon">📞</div>
-                <h4>Línea de Atención</h4>
-                <p>601-123-4567</p>
-                <small>Lunes a Viernes: 7:00 AM - 5:00 PM</small>
-            </div>
-
-            <div class="contact-item">
-                <div class="contact-icon">📧</div>
-                <h4>Email</h4>
-                <p>infoacueducto.com</p>
-                <small>Respuesta en 24 horas</small>
-            </div>
-
-            <div class="contact-item">
-                <div class="contact-icon">📍</div>
-                <h4>Oficina Principal</h4>
-                <p>Calle 123 #45-67</p>
-                <small>Centro de la ciudad</small>
-            </div>
-
-            <div class="contact-item">
-                <div class="contact-icon">🕒</div>
-                <h4>Horarios de Atención</h4>
-                <p>Lunes a Viernes</p>
-                <small>7:00 AM - 5:00 PM</small>
-            </div>
+        <div class="paso-item">
+          <div class="numero-paso">3</div>
+          <h3>Paquete completo incluido</h3>
+          <p>Al contratar el servicio, recibes todo lo necesario para empezar a usar la plataforma: dispositivos portátiles, insumos para impresión y acceso a las herramientas digitales. No tendrás que hacer inversiones adicionales por separado.</p>
         </div>
+      </div>
     </div>
-</section>
+  </section>
+
+  <!-- Sección: Planes de servicio -->
+  <section id="planes" class="seccion-planes">
+    <div class="content-wrapper">
+      <h2 class="titulo-seccion">Planes de servicio</h2>
+      <p class="intro-seccion">
+        Tenemos opciones diseñadas para diferentes tamaños de acueductos, con precios accesibles y beneficios incluidos. Elige el plan que mejor se adapte a la cantidad de usuarios que atiendes y empieza a mejorar tu gestión hoy mismo.
+      </p>
+      
+      <!-- Contenedor de Tarjetas de Planes -->
+      <div class="tarjeta-planes">
+        <!-- Título del Plan -->
+        <h3>Plan anual completo</h3>
+        <!-- Descripción del Plan -->
+        <p>Incluye todas las herramientas y servicios necesarios para la gestión diaria</p>
+        <!-- Características del Plan -->
+        <div class="caracteristicas-planes">
+          <span>Tarifa fija</span>
+          <span>Pago anual</span>
+          <span>Sin costos extra</span>
+          <span>Todo incluido</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección: Nuestros Servicios (Resumen) -->
+  <section id="nuestros-servicios" class="seccion-servicios-resumen">
+    <div class="content-wrapper">
+      <h2 class="titulo-seccion">Nuestros Servicios</h2>
+      <div class="grid-servicios-resumen">
+        <div class="servicio-item">
+          <div class="icono-servicio">📊</div>
+          <h3>Gestión de Facturación</h3>
+          <p>Automatizamos el cálculo de tarifas y la generación de recibos mensuales para todos los usuarios.</p>
+        </div>
+        <div class="servicio-item">
+          <div class="icono-servicio">📱</div>
+          <h3>App de Lecturas</h3>
+          <p>Herramienta móvil para que los operarios registren el consumo en campo de forma rápida y sin errores.</p>
+        </div>
+        <div class="servicio-item">
+          <div class="icono-servicio">💬</div>
+          <h3>Atención al Usuario</h3>
+          <p>Plataforma de comunicación para reportes de daños, PQRS y avisos directos a la comunidad.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección: Contacto -->
+  <section id="contacto" class="seccion-contacto">
+    <div class="content-wrapper">
+      <h2 class="titulo-seccion">Contáctanos</h2>
+      <div class="contenido-contacto">
+        <div class="informacion-contacto">
+          <h3>Visítanos o escríbenos</h3>
+          <p>Dirección: Calle 10 # 6 - 85, Municipio de Támesis, Antioquia, Colombia.</p>
+          
+          <h4>Información general</h4>
+          <p>Teléfono: 321 2453214</p>
+          <p>Correo electrónico: info&#64;miservicioacueducto.com</p>
+
+          <h4>Atención comercial</h4>
+          <p>Teléfono: 321 2439363</p>
+          <p>Correo: ventas&#64;miservicioacueducto.com</p>
+
+          <h4>Soporte técnico</h4>
+          <p>Teléfono: 321 2438139</p>
+          <p>Correo: soporte&#64;miservicioacueducto.com</p>
+        </div>
+        <div class="mapa-contacto">
+          <img src="../../assets/ubicacion.png" alt="Ubicación en Támesis">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pie de página -->
+  <footer class="pie-pagina">
+    <div class="content-wrapper">
+      <div class="footer-grid">
+        <!-- Columna 1: Marca -->
+        <div class="footer-col brand">
+          <h3>Manantial de Vida</h3>
+          <p>Optimizando la administración de acueductos rurales con tecnología intuitiva y soporte cercano para todas las comunidades.</p>
+        </div>
+        
+        <!-- Columna 2: Enlaces -->
+        <div class="footer-col">
+          <h4>Enlaces</h4>
+          <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#conocenos">Conócenos</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </div>
+
+        <!-- Columna 3: Soporte -->
+        <div class="footer-col">
+          <h4>Soporte</h4>
+          <ul>
+            <li><a href="#">Centro de ayuda</a></li>
+            <li><a href="#">Documentación</a></li>
+            <li><a href="#">Términos legales</a></li>
+          </ul>
+        </div>
+
+        <!-- Columna 4: Contacto -->
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <p>Támesis, Antioquia, CO</p>
+          <p>+57 321 2453214</p>
+          <p>info&#64;miservicioacueducto.com</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Manantial de Vida - Todos los derechos reservados</p>
+      </div>
+    </div>
+  </footer>
+</div>
